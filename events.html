@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>God's Prayer Squad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Vanilla Tilt.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0a0a23;
+      color: #e0e7ff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .hero-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #00f6ff, #ff00cc, #00ffaa, #ff0066);
+      background-size: 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .slideshow-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      transform: translateX(-100%);
+      animation: slide-horizontal 42s infinite;
+      filter: brightness(0.7);
+    }
+
+    .slideshow-image:nth-child(1) { animation-delay: 0s; }
+    .slideshow-image:nth-child(2) { animation-delay: 6s; }
+    .slideshow-image:nth-child(3) { animation-delay: 12s; }
+    .slideshow-image:nth-child(4) { animation-delay: 18s; }
+    .slideshow-image:nth-child(5) { animation-delay: 24s; }
+    .slideshow-image:nth-child(6) { animation-delay: 30s; }
+    .slideshow-image:nth-child(7) { animation-delay: 36s; }
+
+    @keyframes slide-horizontal {
+      0% { opacity: 0; transform: translateX(-100%); }
+      4.76% { opacity: 1; transform: translateX(0); }
+      14.29% { opacity: 1; transform: translateX(0); }
+      19.05% { opacity: 0; transform: translateX(100%); }
+      100% { opacity: 0; transform: translateX(100%); }
+    }
+
+    .content-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 1.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .neon-pulse {
+      animation: neon-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes neon-pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.5); }
+    }
+
+    .header-glow {
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+
+    .btn {
+      position: relative;
+      background: rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    .btn:hover {
+      background: rgba(0, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    }
+
+    .btn:active::after {
+      width: 150px;
+      height: 150px;
+      opacity: 1;
+      transition: width 0.4s ease, height 0.4s ease, opacity 0.2s ease;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-container {
+        height: 80vh;
+      }
+
+      .content-overlay {
+        padding: 1rem;
+        max-width: 95%;
+      }
+
+      .content-overlay h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+      }
+
+      .content-overlay p {
+        font-size: clamp(0.9rem, 3vw, 1.2rem);
+        max-width: 100%;
+      }
+
+      .flex.gap-4 {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .glass-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .glass-card img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .glass-card .p-6 {
+        padding: 1rem;
+      }
+
+      .glass-card h2 {
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+      }
+
+      .glass-card p {
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-container {
+        height: 70vh;
+      }
+
+      .content-overlay {
+        padding: 0.75rem;
+      }
+
+      .content-overlay h1 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+
+      .content-overlay p {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+      }
+
+      .glass-card img {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero slideshow -->
+  <div class="hero-container">
+    <img src="charity.jpg" alt="Charity event" class="slideshow-image"/>
+    <img src="charity1.jpg" alt="Community gathering" class="slideshow-image"/>
+    <img src="charity2.jpg" alt="Lake event" class="slideshow-image"/>
+    <img src="chitungwiza.jpg" alt="Mountain prayer" class="slideshow-image"/>
+    <img src="chitungwiza1.jpg" alt="Community outreach" class="slideshow-image"/>
+    <img src="chitungwiza2.jpg" alt="Group worship" class="slideshow-image"/>
+    <img src="chitungwiza3.jpg" alt="Spiritual gathering" class="slideshow-image"/>
+
+    <div class="content-overlay neon-pulse">
+      <h1 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl header-glow">A Moment of Reflection</h1>
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl mt-4 max-w-2xl font-medium">
+        Meet Our Events Below
+      </p>
+      <div class="flex flex-wrap gap-4 mt-6 justify-center">
+        <a href="gpsday.html"><button class="btn neon-pulse"><i class="fas fa-praying-hands mr-2"></i>GPS Day</button></a>
+        <a href="gpsweek.html"><button class="btn neon-pulse"><i class="fas fa-calendar-week mr-2"></i>GPS Week</button></a>
+        <a href="charityday.html"><button class="btn neon-pulse"><i class="fas fa-heart mr-2"></i>Charity Day</button></a>
+        <a href="lorezaday.html"><button class="btn neon-pulse"><i class="fas fa-star mr-2"></i>Loreza Day</button></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Four Layers Section -->
+  <div class="max-w-6xl mx-auto py-8 sm:py-12 md:py-16 px-4 sm:px-6 space-y-10">
+    <!-- Layer 1 -->
+    <div class="flex flex-col md:flex-row items-center glass-card rounded-xl shadow-md overflow-hidden tilt-card">
+      <img src="gps day best.jpg" alt="GPS Day event" class="w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 object-cover m-4 rounded-lg float-animation"/>
+      <div class="flex-1 p-4 sm:p-6 text-left">
+        <h2 class="text-xl sm:text-2xl font-bold text-cyan-300 header-glow">About GPS Day</h2>
+        <p class="text-gray-300 mt-2 text-sm sm:text-base">Join hands with us to build a stronger, united community through love and service.</p>
+      </div>
+      <div class="p-4 sm:p-6">
+        <a href="gpsday.html" class="btn bg-cyan-500 hover:bg-cyan-600 text-white neon-pulse"><i class="fas fa-arrow-right mr-2"></i>Our Update</a>
+      </div>
+    </div>
+
+    <!-- Layer 2 -->
+    <div class="flex flex-col md:flex-row items-center glass-card rounded-xl shadow-md overflow-hidden tilt-card">
+      <img src="gps day1.jpg" alt="GPS Week event" class="w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 object-cover m-4 rounded-lg float-animation"/>
+      <div class="flex-1 p-4 sm:p-6 text-left">
+        <h2 class="text-xl sm:text-2xl font-bold text-cyan-300 header-glow">About GPS Week</h2>
+        <p class="text-gray-300 mt-2 text-sm sm:text-base">Help us nurture the next generation with knowledge, hope, and leadership skills.</p>
+      </div>
+      <div class="p-4 sm:p-6">
+        <a href="gpsweek.html" class="btn bg-green-500 hover:bg-green-600 text-white neon-pulse"><i class="fas fa-arrow-right mr-2"></i>Our Update</a>
+      </div>
+    </div>
+
+    <!-- Layer 3 -->
+    <div class="flex flex-col md:flex-row items-center glass-card rounded-xl shadow-md overflow-hidden tilt-card">
+      <img src="charity day best.jpg" alt="Charity Day event" class="w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 object-cover m-4 rounded-lg float-animation"/>
+      <div class="flex-1 p-4 sm:p-6 text-left">
+        <h2 class="text-xl sm:text-2xl font-bold text-cyan-300 header-glow">About Charity Day</h2>
+        <p class="text-gray-300 mt-2 text-sm sm:text-base">Together we can create sustainable impact and inspire positive change in society.</p>
+      </div>
+      <div class="p-4 sm:p-6">
+        <a href="charityday.html" class="btn bg-purple-500 hover:bg-purple-600 text-white neon-pulse"><i class="fas fa-arrow-right mr-2"></i>Our Update</a>
+      </div>
+    </div>
+
+    <!-- Layer 4 -->
+    <div class="flex flex-col md:flex-row items-center glass-card rounded-xl shadow-md overflow-hidden tilt-card">
+      <img src="night prayer.jpg" alt="Loreza Day event" class="w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 object-cover m-4 rounded-lg float-animation"/>
+      <div class="flex-1 p-4 sm:p-6 text-left">
+        <h2 class="text-xl sm:text-2xl font-bold text-cyan-300 header-glow">About Loreza Day</h2>
+        <p class="text-gray-300 mt-2 text-sm sm:text-base">Your participation matters. Join us in transforming lives and spreading hope.</p>
+      </div>
+      <div class="p-4 sm:p-6">
+        <a href="lorezaday.html" class="btn bg-red-500 hover:bg-red-600 text-white neon-pulse"><i class="fas fa-arrow-right mr-2"></i>Our Update</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Vanilla Tilt.js for 3D tilt effect on cards
+      VanillaTilt.init(document.querySelectorAll('.tilt-card'), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.3,
+      });
+    });
+  </script>
+</body>
+</html>
+
