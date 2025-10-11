@@ -102,6 +102,178 @@
             border-radius: 1rem;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+        .gallery h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            grid-column: 1 / -1;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        /* Icon and Dropdown Menu Styling */
+        .icon-container {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+        }
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 3rem;
+            left: 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+        .dropdown-menu.active {
+            display: flex;
+        }
+        .dropdown-menu .prayer-button {
+            background: #ffd700;
+            color: #1a1a2e;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            width: 180px;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            animation: slideIn 1s ease-out forwards;
+            cursor: pointer;
+        }
+        .prayer-button:nth-child(1) { animation-delay: 0.5s; }
+        .prayer-button:nth-child(2) { animation-delay: 0.7s; }
+        .prayer-button:nth-child(3) { animation-delay: 0.9s; }
+        .prayer-button:nth-child(4) { animation-delay: 1.1s; }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .dropdown-menu .prayer-button i {
+            font-size: 1rem;
+        }
+        /* Modal (Poster) Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 30;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 2px solid #ffd700;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            max-width: 350px;
+            width: 85%;
+            text-align: center;
+            color: #e0e0e0;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/350x400?text=Event+Poster') no-repeat center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .modal-content h2 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+            margin-bottom: 1rem;
+        }
+        .modal-content p {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        .modal-content .event-details {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .close-button {
+            background: #ffd700;
+            color: #1a1a2e;
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
         /* Responsive Adjustments */
         @media (max-width: 640px) {
             .title {
@@ -111,8 +283,39 @@
                 width: 10px;
                 height: 20px;
             }
-            .card, .summary-layer {
+            .card, .summary-layer, .poster-layer, .gallery {
                 padding: 1rem;
+            }
+            .video-area, .gallery {
+                margin: 0.5rem 0;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .dropdown-menu .prayer-button {
+                width: 140px;
+                font-size: 0.8rem;
+            }
+            .modal-content {
+                padding: 1rem;
+                max-width: 300px;
+            }
+            .modal-content h2 {
+                font-size: 1.2rem;
+            }
+            .modal-content p {
+                font-size: 0.8rem;
+            }
+            .close-button {
+                padding: 0.3rem 0.7rem;
+                font-size: 0.8rem;
+            }
+            .menu-icon {
+                width: 24px;
+                height: 16px;
+            }
+            .menu-icon div {
+                height: 3px;
             }
         }
         @media (min-width: 641px) {
@@ -123,6 +326,43 @@
     </style>
 </head>
 <body>
+    <!-- Icon with Dropdown Menu in Top Left Corner -->
+    <div class="icon-container">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="service.html" class="prayer-button">
+                <i class="fas fa-church"></i> Word Service
+            </a>
+            <a href="night-prayer.html" class="prayer-button">
+                <i class="fas fa-moon"></i> Night Prayer
+            </a>
+            <a href="marching-prayer.html" class="prayer-button">
+                <i class="fas fa-shoe-prints"></i> Marching Prayer
+            </a>
+            <button onclick="showPoster()" class="prayer-button">
+                <i class="fas fa-calendar-alt"></i> Upcoming Event
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal for Upcoming Event Poster -->
+    <div class="modal" id="eventPoster">
+        <div class="modal-content">
+            <h2>Annual Prayer Summit 2025</h2>
+            <div class="event-details">
+                <p><strong>Date:</strong> November 15, 2025</p>
+                <p><strong>Time:</strong> 10:00 AM - 4:00 PM</p>
+                <p><strong>Location:</strong> Tafes Chapel</p>
+            </div>
+            <p>Join us for a day of worship, sermons, and music. Unite with God's Prayer Squad!</p>
+            <button class="close-button" onclick="closePoster()">Close</button>
+        </div>
+    </div>
+
     <!-- Candles -->
     <div class="candle absolute bottom-0 left-1/2"></div>
     <div class="candle absolute bottom-0 right-1/4" style="animation-delay: 0.5s;"></div>
@@ -157,12 +397,49 @@
             <source src="gospel(1).mp4" type="video/mp4">
             
         </video>
-        <p class="text-sm text-gray-400 mt-2 text-center">TThe Last Service was so hot.</p>
+        <p class="text-sm text-gray-400 mt-2 text-center">The Last Service was so hot.</p>
+    </div>
+
+    <!-- Gallery Section for Word Service Images -->
+    <div class="gallery">
+        <h3>Word Service Moments</h3>
+        <img src="tuesday service best.jpg" alt="Word Service Image 1">
+        <img src="tuesday service.jpg" alt="Word Service Image 2">
+        <img src="tuesday service1.jpg" alt="Word Service Image 3">
     </div>
 
     <!-- Footer -->
     <footer class="text-center py-6 sm:py-8 bg-gray-900 border-t border-gray-800 w-full mt-auto">
         <p class="text-gray-400 text-sm sm:text-base">&copy; 2025 God's Prayer Squad. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('active');
+        }
+
+        function showPoster() {
+            const modal = document.getElementById('eventPoster');
+            modal.style.display = 'flex';
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.remove('active'); // Close dropdown when poster opens
+        }
+
+        function closePoster() {
+            const modal = document.getElementById('eventPoster');
+            modal.style.display = 'none';
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const iconContainer = document.querySelector('.icon-container');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const modal = document.getElementById('eventPoster');
+            if (!iconContainer.contains(event.target) && !modal.contains(event.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
