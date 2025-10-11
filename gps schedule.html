@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Weekly Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        /* Title Animation */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+            }
+        }
+        /* Candle Elements */
+        .candle {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border-radius: 8px 8px 0 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { box-shadow: 0 0 8px #ffd700; }
+            100% { box-shadow: 0 0 15px #ff8c00; }
+        }
+        /* Prayer Buttons */
+        .prayer-button {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            width: 200px;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .prayer-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .prayer-button i {
+            font-size: 1.2rem;
+        }
+        /* Content Card */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        th {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            font-weight: 700;
+        }
+        td {
+            color: #e0e0e0;
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            .candle {
+                width: 10px;
+                height: 20px;
+            }
+            .prayer-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                width: 160px;
+            }
+            .prayer-button i {
+                font-size: 1rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+        @media (min-width: 641px) {
+            .title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Candles -->
+    <div class="candle absolute bottom-0 left-1/2"></div>
+    <div class="candle absolute bottom-0 right-1/4" style="animation-delay: 0.5s;"></div>
+
+    <!-- Title -->
+    <h1 class="title">GPS Weekly Schedule</h1>
+
+ <!-- Content Section -->
+    <section class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div class="card">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">Weekly Schedule Overview</h2>
+            <p class="text-base sm:text-lg leading-relaxed text-gray-300 mb-4">
+                God's Prayer Squad (GPS) holds regular events to honor our community and reflect on our shared values. Join us for our weekly services, night prayers, and marching prayers, as we come together in remembrance and unity.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Word Service</td>
+                        <td>Tuesday </td>
+                        <td>21:00PM-22:30PM</td>
+                        <td>Tafes Chapel</td>
+                    </tr>
+                    <tr>
+                        <td>Night Prayer</td>
+                        <td>Thursday</td>
+                        <td>21:00PM-22:30PM</td>
+                        <td>Gethsemane Garden</td>
+                    </tr>
+                    <tr>
+                        <td>Marching Prayer</td>
+                        <td>Saturday</td>
+                        <td>04:00AM-07:00AM</td>
+                        <td>Chitungwiza</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+
+
+
+    
+
+    <!-- Prayer Buttons -->
+    <div class="flex flex-col items-center gap-4">
+        <a href="service.html" class="prayer-button">
+            <i class="fas fa-church"></i>Word Service
+        </a>
+        <a href="night-prayer.html" class="prayer-button">
+            <i class="fas fa-moon"></i> Night Prayer
+        </a>
+        <a href="marching-prayer.html" class="prayer-button">
+            <i class="fas fa-shoe-prints"></i> Marching Prayer
+        </a>
+    </div>
+
+   
+
+    <!-- Footer -->
+    <footer class="text-center py-6 sm:py-8 bg-gray-900 border-t border-gray-800 w-full">
+        <p class="text-gray-400 text-sm sm:text-base">&copy; 2025 God's Prayer Squads.All right are reserved.</p>
+    </footer>
+</body>
+</html>

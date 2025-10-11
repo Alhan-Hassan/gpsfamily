@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>God's Prayer Squad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ecf0f1;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding-top: 120px;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Gradient Overlay for Background */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(231, 76, 60, 0.2));
+            z-index: -1;
+        }
+
+        /* Fixed Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-logo-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #3498db;
+            flex: 1;
+            text-align: center;
+            margin: 0;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header-logo-text:hover {
+            color: #2980b9;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .gps-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        .gps-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        .gps-logo img {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            align-items: center;
+            align-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gps-logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        @keyframes shine {
+            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(52, 152, 219, 0.8); }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #3498db;
+            z-index: 101;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            color: #ffffff;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-btn {
+            font-size: 1.5em;
+            color: #ffffff;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #3498db;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 60px 15px;
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        @keyframes glowing-border {
+            0% { border-color: rgba(52, 152, 219, 0.5); }
+            50% { border-color: rgba(231, 76, 60, 0.5); }
+            100% { border-color: rgba(52, 152, 219, 0.5); }
+        }
+
+        .welcome h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5em;
+            margin: 0;
+            color: #ffffff;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite, color-pulse 6s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ffffff;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .welcome h1:hover {
+            transform: scale(1.05);
+        }
+
+        .welcome h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #ffffff;
+            animation: fadeIn 1.5s ease-in-out;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            transition: letter-spacing 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .welcome h2:hover {
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ffffff; }
+        }
+
+        @keyframes color-pulse {
+            0% { color: #3498db; }
+            33% { color: #e74c3c; }
+            66% { color: #ffffff; }
+            100% { color: #3498db; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Decorative Divider */
+        .section-divider {
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 20px auto;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Mission Section */
+        .mission {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .mission h2 {
+            font-size: 1.8em;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .mission .icon-deco {
+            font-size: 1.5em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraph Text */
+        .paragraph-text {
+            background: linear-gradient(to left, #3498db, #2980b9);
+            color: #ffffff;
+            padding: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paragraph-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        /* Timetable Section */
+        .timetable {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .A {
+            width: 280px;
+            height: 320px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .A img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .A:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 30px 15px;
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .content-section {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+            }
+
+            .content-section.reverse {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .content-section .image-container {
+            flex: 2;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .content-section .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .content-section .text-container {
+            flex: 1;
+        }
+
+        .content-section h3 {
+            color: #3498db;
+            font-size: 1.6em;
+            margin-top: 0;
+        }
+
+        /* Uniform Section */
+        .uniform {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sale {
+            width: 220px;
+            height: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sale img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .sale:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Prayer Links */
+        .prayer {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .prayer .icon-deco {
+            font-size: 1.5em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .prayer a {
+            text-decoration: none;
+            background: #e74c3c;
+            color: #ffffff;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prayer a i {
+            font-size: 1em;
+        }
+
+        .prayer a:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
+        }
+
+        /* Media Section */
+        .media {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .media a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .media a:hover {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            background: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        footer p {
+            color: #3498db;
+            margin: 5px 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 320px) {
+            body {
+                padding-top: 100px;
+            }
+
+            header {
+                padding: 10px 15px;
+            }
+
+            .header-logo-text {
+                font-size: 1.5em;
+            }
+
+            .gps-circle {
+                width: 40px;
+                height: 40px;
+                margin-left: 10px;
+            }
+
+            .gps-circle span {
+                font-size: 0.9em;
+            }
+
+            .gps-logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .sidebar ul li a {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            .welcome {
+                padding: 40px 10px;
+            }
+
+            .welcome h1 {
+                font-size: 1.8em;
+            }
+
+            .welcome h2 {
+                font-size: 1.2em;
+            }
+
+            .timetable .A {
+                width: 100%;
+                max-width: 260px;
+                height: 300px;
+            }
+
+            .timetable .A img {
+                height: 140px;
+            }
+
+            .content-section .image-container {
+                min-width: 100%;
+            }
+
+            .sale {
+                width: 200px;
+                height: 260px;
+            }
+
+            .sale img {
+                height: 100%;
+            }
+
+            .prayer a {
+                padding: 6px 10px;
+                font-size: 0.8em;
+                margin: 3px;
+            }
+
+            .media a {
+                font-size: 1.2em;
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    <div class="bg-overlay"></div>
+
+    <header>
+        <i class="fas fa-bars menu-btn"></i>
+        <div class="gps-circle">
+            <span>GPS</span>
+        </div>
+        <h1 class="header-logo-text">God's Prayer Squad</h1>
+        <div class="gps-logo">
+            <img src="gps logo.png" alt="GPS Logo">
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="bible.html">Read Bible</a></li>
+            <li><a href="gps schedule.html">Our Timetable</a></li
+        </ul>
+    </div>
+
+    <div class="welcome" id="home">
+        <h1 class="text-3xl md:text-4xl">Welcome To GPS Family</h1>
+        <h2 class="text-xl md:text-2xl">Season Of Walking In Divine Capacity</h2>
+    </div>
+
+    <hr class="section-divider">
+    <div class="mission">
+        <i class="fas fa-pray icon-deco"></i>
+        <h2>Our Mission</h2>
+        <p>Our mission is to spread God's love through a dedicated ministry of prayer and compassionate service.</p>
+        <p>We exist to build a foundation of spiritual strength through prayer, which empowers our outreach efforts to those in need.</p>
+        <p>Our calling is to demonstrate the power of God's word by putting our faith into tangible service for our neighbors.</p>
+    </div>
+
+    <hr class="section-divider">
+    <div class="paragraph-text">
+        <p>Check out our timetable to find a session that fits your schedule and come experience the power of the GPS Family. We are always happy to welcome new members into our fold.</p>
+    </div>
+
+    <hr class="section-divider">
+    <h2 class="text-center text-2xl font-bold text-[#3498db] mt-5">Our Weekly Schedule</h2>
+    <div class="timetable">
+        <div class="A">
+            <img src="tuesday service.jpg" alt="Tuesday Service">
+            Word Service<br>
+            <hr class="h-0.5 bg-[#3498db]">
+            From 21:00 PM <br>To 22:30 PM<br>
+            Venue: Tafes Chappel
+        </div>
+        <div class="A">
+            <img src="night prayer.jpg" alt="Night Prayer">
+            Night Prayer<br>
+            <hr class="h-0.5 bg-[#3498db]">
+            From 21:00 PM<br> To 22:30 PM<br>
+            Venue: Gethsemane Garden
+        </div>
+        <div class="A">
+            <img src="marchimg prayer best.jpg" alt="Marching Prayer">
+            Marching Prayer<br>
+            <hr class="h-0.5 bg-[#3498db]">
+            From 04:00 AM<br> To 07:00 AM<br>
+            Venue: Chitungwiza
+        </div>
+    </div>
+
+    <hr class="section-divider">
+    <h1 class="text-center text-3xl font-bold text-[#2c3e50] mt-12">Our Community</h1>
+    <div class="content-section" id="about">
+        <div class="image-container">
+            <img src="chitungwiza1.jpg" alt="A group praying together">
+        </div>
+        <div class="text-container">
+            <h3>Power Of Prayer</h3>
+            <p>We gather to lift up our prayers for our families, our city, and the world. Our vision is to see a generation passionate about prayer and committed to living out their faith in tangible ways.</p>
+            <hr>
+            <ul>
+                <hr/>
+                <span style="color: #ffffff;">NOW</span>
+                <li> Let's grow spiritually</li>
+                <li> Let's pray</li>
+                <li> Let's understand the WORD of GOD</li>
+                <li>Let's build a closer fellowship with the HOLY SPIRIT</li>
+                <li>Let's demonstrate the love of GOD to all people.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section reverse" id="articles">
+        <div class="image-container">
+            <img src="chitungwiza.jpg" alt="People gathering for an event">
+        </div>
+        <div class="text-container">
+            <h3>Our Family</h3>
+            <p>Our meetings are more than just a schedule; they are opportunities for spiritual growth and community building. Our sessions include deep Word Service, Night Prayer, and powerful Marching Prayer.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+    <div class="prayer">
+        <i class="fas fa-cross icon-deco"></i>
+        <a href="prayer.html"><i class="fas fa-pray"></i> Prayer & Fasting</a>
+        <a href="events.html"><i class="fas fa-calendar-alt"></i> Community Events</a>
+        <a href="election font.html"><i class="fas fa-users"></i> Our Leadership</a>
+    </div>
+
+    <hr class="section-divider">
+    <h3 class="text-center text-xl font-bold text-[#3498db] mt-12">Meet Our Uniform</h3>
+    <div class="uniform">
+        <div class="sale">
+            <img src="white sale.jpg" alt="White Uniform">
+        </div>
+        <div class="sale">
+            <img src="sale nyeusi best.jpg" alt="Black Uniform">
+        </div>
+        <div class="sale">
+            <img src="sale orange best.jpg" alt="Orange Uniform">
+        </div>
+    </div>
+
+    <hr class="section-divider">
+    <div class="media">
+        <p>Follow us on our social media</p>
+        <a href="https://www.instagram.com/god_s_prayer_squad_gps/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/search/top?q=gods%20prayer%20squad%20-gps" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/god_s_prayer_squad_gps/" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/+255699889376" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <footer>
+        &copy; 2025 GPS. All rights are reserved<br>
+        <p>Designed by Alhan<br>
+        +255699889376 / +255750589376<br>
+        alhanh52@gmail.com</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#3498db', '#e74c3c', '#ffffff'] },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: '#3498db', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+
+            // Sidebar toggle functionality
+            const menuBtn = document.querySelector('.menu-btn');
+            const sidebar = document.getElementById('sidebar');
+
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Close sidebar when a navigation link is clicked
+            const navLinks = document.querySelectorAll('.sidebar ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

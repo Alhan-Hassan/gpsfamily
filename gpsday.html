@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God's Prayer Squad Day</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom right, #1e1b4b, #3b0764);
+            background-attachment: fixed;
+            color: #e0e7ff;
+            scroll-behavior: smooth;
+        }
+        .card {
+            backdrop-filter: blur(10px);
+            background-color: rgba(30, 27, 75, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .animate-fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05) translateY(-2px);
+        }
+        .header-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative">
+        <!-- Main content container -->
+        <div class="card shadow-2xl rounded-3xl p-6 sm:p-12 max-w-5xl w-full">
+            <!-- Header Section -->
+            <header class="text-center mb-10">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-cyan-300 mb-2 header-glow">
+                    God's Prayer Squad Day<br>
+                    <p class="text-3xl">Gps Day</p>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300">
+                    A Day of Celebration, Happiness, and Unity
+                </p>
+            </header>
+
+            <!-- About Section -->
+            <section class="mb-10 text-center">
+                <div class="mb-6 flex justify-center">
+                    <i class="fas fa-praying-hands text-6xl text-cyan-400 animate-pulse neon-glow"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-4 header-glow">
+                    About the Event
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-base sm:text-lg max-w-prose mx-auto">
+                    God's Prayer Squad (GPS) Day is an annual event where our community comes together to strengthen our faith through collective Eating, Drinking, and Dancing together. It's a day dedicated to spiritual reflection, sharing testimonies, and lifting our voices in unity. We believe in the power of prayer to transform lives and communities, and this day serves as a powerful reminder of that.<br>
+                    Also this day new coordinators of GPS will be Announced
+                </p>
+            </section>
+
+            <!-- Event Gallery Section -->
+            <section class="mb-10">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
+                    <button id="updates-button" class="bg-cyan-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-600 transition-all duration-300 transform neon-glow">
+                        Latest Updates
+                    </button>
+                    <button id="learn-more-button" class="bg-purple-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300 transform neon-glow">
+                        Get Alert
+                    </button>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-100 mb-6 border-b-4 border-cyan-400 pb-2 text-center header-glow">
+                    Some of Our Gps Day Images
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Image 1 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day chakula best.jpg" alt="A group of people engaged in a focused prayer session." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <!-- Image 2 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day cake best.jpg" alt="A person sharing a personal testimony with the group." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <!-- Image 3 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day1.jpg" alt="The community gathered for a worship session." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <!-- Image 4 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day2.jpg" alt="People enjoying fellowship and conversation after the main event." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <!-- Image 5 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day3.jpg" alt="Children participating in a dedicated prayer session." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <!-- Image 6 -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg transition-transform transform hover:scale-105 neon-glow">
+                        <img src="gps day.jpg" alt="The entire group standing together for the closing prayer." class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <p style="text-align:center;">
+
+This day is accompanied by various events, including bidding farewell to and introducing new leaders for the new season.</p>
+
+    <!-- Modal for Updates -->
+    <div id="updates-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden modal-overlay">
+        <div class="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in transform scale-95 transition-transform duration-300 neon-glow">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-cyan-300 header-glow">Latest Announcements</h3>
+                <button id="close-updates" class="text-gray-300 hover:text-cyan-400 text-2xl">&times;</button>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+                We're excited to announce that the date for our next GPS Day is set!
+                Join us on <span class="font-bold text-cyan-400">May 26th</span> for a day of powerful Vibe.<br>
+                <p class="text-center text-cyan-400">Plan to join with us</p>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal for Learn More/Join Us -->
+    <div id="learn-more-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden modal-overlay">
+        <div class="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-md w-full animate-fade-in transform scale-95 transition-transform duration-300 neon-glow">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-purple-300 header-glow">Join Our Community</h3>
+                <button id="close-learn-more" class="text-gray-300 hover:text-purple-400 text-2xl">&times;</button>
+            </div>
+            <p class="text-gray-300 mb-4">
+                Enter your email to receive updates on future events and prayer initiatives.
+            </p>
+            <div>
+                <input type="email" placeholder="Your Email Address" class="w-full p-3 rounded-lg border border-gray-500 bg-gray-800 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 mb-4 transition-all">
+                <button type="submit" class="w-full bg-purple-500 text-white font-bold py-3 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300 neon-glow">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Testimony Button Layer -->
+    <div class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 flex justify-center items-center z-50 shadow-lg neon-glow">
+        <a href="testimony.html">
+            <button id="testimony-button" class="bg-purple-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-purple-600 transition-all duration-300 transform neon-glow flex items-center gap-2">
+                <i class="fas fa-comment-alt"></i> See Some Testimon
+            </button>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: '#00ffff' },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: '#00ffff', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+
+            const updatesButton = document.getElementById('updates-button');
+            const updatesModal = document.getElementById('updates-modal');
+            const closeUpdates = document.getElementById('close-updates');
+
+            const learnMoreButton = document.getElementById('learn-more-button');
+            const learnMoreModal = document.getElementById('learn-more-modal');
+            const closeLearnMore = document.getElementById('close-learn-more');
+
+            const openModal = (modal) => {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.firstElementChild.classList.remove('scale-95'), 10);
+            };
+
+            const closeModal = (modal) => {
+                modal.firstElementChild.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            };
+
+            updatesButton.addEventListener('click', () => openModal(updatesModal));
+            closeUpdates.addEventListener('click', () => closeModal(updatesModal));
+
+            learnMoreButton.addEventListener('click', () => openModal(learnMoreModal));
+            closeLearnMore.addEventListener('click', () => closeModal(learnMoreModal));
+
+            // Close modals when clicking outside
+            window.addEventListener('click', (event) => {
+                if (event.target === updatesModal) {
+                    closeModal(updatesModal);
+                }
+                if (event.target === learnMoreModal) {
+                    closeModal(learnMoreModal);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

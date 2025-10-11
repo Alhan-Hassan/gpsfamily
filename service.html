@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Word Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        /* Title Animation */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+            }
+        }
+        /* Candle Elements */
+        .candle {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border-radius: 8px 8px 0 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { box-shadow: 0 0 8px #ffd700; }
+            100% { box-shadow: 0 0 15px #ff8c00; }
+        }
+        /* Content Card */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        /* Poster Layer */
+        .poster-layer {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 600px;
+            width: 100%;
+        }
+        .poster-layer img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        /* Summary Layer */
+        .summary-layer {
+            background: rgba(255, 140, 0, 0.1);
+            border: 2px solid rgba(255, 140, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 800px;
+            width: 100%;
+        }
+        /* Video Area */
+        .video-area {
+            margin: 1rem 0;
+            max-width: 800px;
+            width: 100%;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            .candle {
+                width: 10px;
+                height: 20px;
+            }
+            .card, .summary-layer {
+                padding: 1rem;
+            }
+        }
+        @media (min-width: 641px) {
+            .title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Candles -->
+    <div class="candle absolute bottom-0 left-1/2"></div>
+    <div class="candle absolute bottom-0 right-1/4" style="animation-delay: 0.5s;"></div>
+
+    <!-- Title -->
+    <h1 class="title">GPS Word Service</h1>
+
+    <!-- Topic of the Day -->
+    <div class="card">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-2">Today's Topic</h2><br>
+        <p class="text-base sm:text-lg text-gray-300">Praying For Tanzanian</p>
+    </div>
+
+    <!-- Poster Layer -->
+    <div class="poster-layer">
+        <h3 class="text-lg font-semibold mb-2 text-center">Service Poster</h3>
+        <img src="mkutano wa kanisa.jpg" alt="GPS Word Service Poster">
+    </div>
+
+    <!-- Summary Layer -->
+    <div class="summary-layer">
+        <h3 class="text-lg font-semibold mb-4 text-center">Summary of the Word Service</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-300">
+            In today's Word Service, we explored the theme of 'Finding Peace in Remembrance.' The session began with a heartfelt reflection on the legacies of our departed members, emphasizing how their wisdom continues to guide us. Key points included the importance of gratitude, community support, and spiritual resilience. Participants shared personal stories, fostering a sense of unity and hope. The service concluded with a collective prayer for peace and strength.
+        </p>
+    </div>
+
+    <!-- Video Area -->
+    <div class="video-area">
+        <h3 class="text-lg font-semibold mb-2 text-center">Recorded Video</h3>
+        <video controls>
+            <source src="gospel(1).mp4" type="video/mp4">
+            
+        </video>
+        <p class="text-sm text-gray-400 mt-2 text-center">TThe Last Service was so hot.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 sm:py-8 bg-gray-900 border-t border-gray-800 w-full mt-auto">
+        <p class="text-gray-400 text-sm sm:text-base">&copy; 2025 God's Prayer Squad. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Night Prayer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        /* Title Animation */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+            }
+        }
+        /* Candle Elements */
+        .candle {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border-radius: 8px 8px 0 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { box-shadow: 0 0 8px #ffd700; }
+            100% { box-shadow: 0 0 15px #ff8c00; }
+        }
+        /* Content Card */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        /* Poster Layer */
+        .poster-layer {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 600px;
+            width: 100%;
+        }
+        .poster-layer img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        /* Past Events Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        /* Back Button */
+        .back-button {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        .back-button i {
+            font-size: 1.2rem;
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            .candle {
+                width: 10px;
+                height: 20px;
+            }
+            .card, .poster-layer {
+                padding: 1rem;
+            }
+            .gallery img {
+                height: 120px;
+            }
+            .back-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .back-button i {
+                font-size: 1rem;
+            }
+        }
+        @media (min-width: 641px) {
+            .title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Candles -->
+    <div class="candle absolute bottom-0 left-1/2"></div>
+    <div class="candle absolute bottom-0 right-1/4" style="animation-delay: 0.5s;"></div>
+
+    <!-- Title -->
+    <h1 class="title">GPS Night Prayer</h1>
+
+    <!-- Back Button -->
+    <div class="flex justify-center mb-4">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Schedule
+        </a>
+    </div>
+
+    <!-- Prayer Point of the Day -->
+    <div class="card">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-2">Today's Prayer Point</h2>
+        <p class="text-base sm:text-lg text-gray-300">Strength in Unity (October 08, 2025)</p>
+    </div>
+
+    <!-- Poster Layer -->
+    <div class="poster-layer">
+        <h3 class="text-lg font-semibold mb-2 text-center">Night Prayer Poster</h3>
+        <img src="mkutano wa kanisa.jpg" alt="GPS Night Prayer Poster">
+    </div>
+
+    <!-- Past Events Gallery -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4 text-center">Moments from Past Night Prayers</h3>
+        <div class="gallery">
+            <img src="night praye.jpg" alt="Past Night Prayer 1">
+            <img src="marching prayer2.jpg" alt="Past Night Prayer 2">
+            <img src="marching prayer" alt="Past Night Prayer 3">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 sm:py-8 bg-gray-900 border-t border-gray-800 w-full mt-auto">
+        <p class="text-gray-400 text-sm sm:text-base">&copy; 2025 God's Prayer Squad. All rights reserved.</p>
+    </footer>
+</body>
+</html>

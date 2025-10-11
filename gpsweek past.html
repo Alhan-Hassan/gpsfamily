@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Background Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f4f8;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slideshow-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+            opacity: 0;
+            animation: image-fade 24s infinite;
+        }
+
+        /* Assigning different animation delays to each image */
+        .slideshow-image:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slideshow-image:nth-child(2) {
+            animation-delay: 6s;
+        }
+
+        .slideshow-image:nth-child(3) {
+            animation-delay: 12s;
+        }
+
+        .slideshow-image:nth-child(4) {
+            animation-delay: 18s;
+        }
+
+        @keyframes image-fade {
+            0% {
+                opacity: 0;
+                transform: translateX(-5%);
+            }
+            8% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            25% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            33% {
+                opacity: 0;
+                transform: translateX(5%);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-5%);
+            }
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 1rem;
+        }
+
+        .content-overlay h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 640px) {
+            .content-overlay h1 {
+                font-size: 2rem;
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .scroll-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            font-weight: 600;
+        }
+
+        .scroll-header.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="scroll-header" class="scroll-header">
+       <h1> See Our Past Gps Week Images</h1>
+    </div>
+    <div class="hero-container">
+        <!-- Slideshow Images -->
+        <img
+            src="C:\Users\KILIBUCHE\Documents\Adobe\project\charity2.jpg"
+            alt="A vast, starry night sky over mountains."
+            class="slideshow-image"
+        />
+        <img
+            src="D:\GPS\Marching Prayers\_V1A9183.CR2"
+            alt="A person walking alone on a serene beach at sunset."
+            class="slideshow-image"
+        />
+        <img
+            src="D:\GPS\Marching Prayers\_V1A9208.CR2"
+            alt="A calm lake at sunrise with reflections of a dock."
+            class="slideshow-image"
+        />
+        <img
+            src="D:\GPS\Marching Prayers\_V1A9211.CR2"
+            alt="A beautiful mountain path surrounded by trees."
+            class="slideshow-image"
+        />
+
+        <div class="content-overlay">
+            <h1 class="font-extrabold text-5xl md:text-6xl text-center leading-tight">
+                A Moment of Reflection
+            </h1>
+            <p class="text-xl md:text-2xl mt-4 text-center max-w-2xl font-medium">
+                Find peace and strength in quiet contemplation.
+            </p>
+            <div class="button-container">
+                <button class="btn">Find Hope</button>
+                <button class="btn">Join Us</button>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100vh;"></div>
+    <script>
+        const scrollHeader = document.getElementById('scroll-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                scrollHeader.classList.add('visible');
+            } else {
+                scrollHeader.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
