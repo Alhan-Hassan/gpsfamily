@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GPS - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Full-screen image slider */
+    .slider {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 0.4; /* semi-transparent overlay feel */
+    }
+
+    /* Overlay content */
+    .content {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top right buttons + logo */
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 3.6rem;
+      font-weight: 900;
+      letter-spacing: -5px;
+      background: linear-gradient(90deg, #00d4ff, #7c3aed, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #c7d2fe;
+      letter-spacing: 4px;
+      opacity: 0.9;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 12px 26px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #818cf8;
+      color: #c7d2fe;
+    }
+
+    .btn-outline:hover {
+      background: rgba(129, 140, 248, 0.15);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .logo {
+        font-size: 3rem;
+      }
+      
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+      }
+      
+      .btn {
+        padding: 14px;
+        font-size: 1.15rem;
+      }
+    }
+    footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            background: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+            width: 100%;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        footer p {
+            color: #3498db;
+            margin: 5px 0;
+        }
+  </style>
+</head>
+<body>
+
+<!-- Full-screen background slider -->
+<div class="slider">
+  <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="slide" style="background-image: url('https://photos.app.goo.gl/PtciEeNPZQ3tz4DL9')"></div>
+</div>
+
+<!-- Content overlay -->
+<div class="content">
+  <div class="header">
+    <div class="logo-container">
+      <div class="logo">GPS</div>
+      <div class="logo-text">God's Prayer Squad</div>
+    </div>
+
+    <div class="buttons">
+      <a href="testimony.html" class="btn btn-primary">Testimony</a>
+      <a href="form.html" class="btn btn-primary">Register</a>
+      <a href="login.html" class="btn btn-outline">Login</a>
+    </div>
+  </div>
+</div>
+<footer>
+  &copy; 2026 GPS.All rights are reserved<br>
+  <p>Designed by Alhan</p>
+</footer>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  setInterval(nextSlide, 5500); // change every 5.5 seconds
+</script>
+
+</body>
+</html>
