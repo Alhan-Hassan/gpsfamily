@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Marching Prayer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+        /* Title Animation */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: glow 3s ease-in-out infinite alternate;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.7);
+            }
+        }
+        /* Candle Elements */
+        .candle {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border-radius: 8px 8px 0 0;
+            bottom: 0;
+            transform: translateX(-50%);
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { box-shadow: 0 0 8px #ffd700; }
+            100% { box-shadow: 0 0 15px #ff8c00; }
+        }
+        /* Content Card */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        /* Poster Layer */
+        .poster-layer {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 600px;
+            width: 100%;
+        }
+        .poster-layer img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        /* Video Area */
+        .video-area {
+            margin: 1rem 0;
+            max-width: 800px;
+            width: 100%;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        /* Gallery for Images */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+       
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            .candle {
+                width: 10px;
+                height: 20px;
+            }
+            .card, .poster-layer, .video-area {
+                padding: 1rem;
+            }
+            .gallery img {
+                height: 120px;
+            }
+            .back-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .back-button i {
+                font-size: 1rem;
+            }
+        }
+        @media (min-width: 641px) {
+            .title {
+                font-size: 3rem;
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 15px 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-logo-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #3498db;
+            flex: 1;
+            text-align: center;
+            margin: 0;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header-logo-text:hover {
+            color: #2980b9;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .gps-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        .gps-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+      
+
+        
+
+        @keyframes shine {
+            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(52, 152, 219, 0.8); }
+        }
+          body {
+                padding-top: 120px;
+            }
+             footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            background: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+            width: 100%;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        footer p {
+            color: #3498db;
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Candles -->
+    <div class="candle absolute bottom-0 left-1/2"></div>
+    <div class="candle absolute bottom-0 right-1/4" style="animation-delay: 0.5s;"></div>
+     <header>
+        <i class="fas fa-bars hamburger"></i>
+        <div class="gps-circle">
+            <span>GPS</span>
+        </div>
+        <h1 class="header-logo-text">God's Prayer Squad</h1>
+       
+    </header>
+
+    <!-- Title -->
+    <h1 class="title">GPS Marching Prayer</h1>
+
+  
+
+    <!-- Prayer Point of the Day -->
+    <div class="card">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-2">Today's Prayer Point</h2>
+        <p class="text-base sm:text-lg text-gray-300">Journey of Faith (October 10, 2025)</p>
+    </div>
+
+    <!-- Poster Layer -->
+    <div class="poster-layer">
+        <h3 class="text-lg font-semibold mb-2 text-center">Marching Prayer Poster</h3>
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="GPS Marching Prayer Poster">
+    </div>
+
+    <!-- Video Area -->
+    <div class="video-area">
+        <h3 class="text-lg font-semibold mb-2 text-center">Marching Prayer Video</h3>
+        <video controls>
+            <source src="https://example.com/path/to/marching-prayer-video.mp4" type="video/mp4">
+          
+        </video>
+        <p class="text-sm text-gray-400 mt-2 text-center">The service was so wonderful.</p>
+    </div>
+
+    <!-- Images from the Day -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4 text-center">Moments from Today's Marching Prayer</h3>
+        <div class="gallery">
+            <img src="marchimg prayer best.jpg" alt="Marching Prayer 1">
+            <img src="marching prayer.jpg" alt="Marching Prayer 2">
+            <img src="marching prayer1.jpg" alt="Marching Prayer 3">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 GPS. All rights are reserved.<br>
+        Designed by Alhan
+    </footer>
+</body>
+</html>

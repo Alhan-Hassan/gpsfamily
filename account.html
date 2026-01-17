@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Options - God's Prayer Squad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ecf0f1;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding-top: 120px;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Gradient Overlay for Background */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(231, 76, 60, 0.2));
+            z-index: -1;
+        }
+
+        /* Fixed Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-logo-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #3498db;
+            flex: 1;
+            text-align: center;
+            margin: 0;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header-logo-text:hover {
+            color: #2980b9;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .gps-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        .gps-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        .gps-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gps-logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        @keyframes shine {
+            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(52, 152, 219, 0.8); }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #3498db;
+            z-index: 101;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            color: #ffffff;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-btn {
+            font-size: 1.5em;
+            color: #ffffff;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #3498db;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .content-section h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5em;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .content-section h3 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin: 20px 0 10px;
+        }
+
+        .content-section h4 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        .content-section img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        .content-section p {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        /* Decorative Divider */
+        .section-divider {
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 20px auto;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            background: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        footer p {
+            color: #3498db;
+            margin: 5px 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 320px) {
+            body {
+                padding-top: 100px;
+            }
+
+            header {
+                padding: 10px 15px;
+            }
+
+            .header-logo-text {
+                font-size: 1.5em;
+            }
+
+            .gps-circle {
+                width: 40px;
+                height: 40px;
+                margin-left: 10px;
+            }
+
+            .gps-circle span {
+                font-size: 0.9em;
+            }
+
+            .gps-logo img {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .sidebar ul li a {
+                padding: 10px 12px;
+                font-size: 0.9em;
+            }
+
+            .content-section h1 {
+                font-size: 1.8em;
+            }
+
+            .content-section h3 {
+                font-size: 1.4em;
+            }
+
+            .content-section img {
+                width: 100%;
+                height: 5000px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    <div class="bg-overlay"></div>
+
+    <header>
+        <i class="fas fa-bars menu-btn"></i>
+        <div class="gps-circle">
+            <span>GPS</span>
+        </div>
+        <h1 class="header-logo-text">God's Prayer Squad</h1>
+       
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="fontpage.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="bible.html">Read Bible</a></li>
+             <li><a href="gps schedule.html">Our Timetable </a></li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h1>Make a Payment</h1>
+        <p>Your generous contributions support our charitable initiatives and help sustain the God's Prayer Squad family. All payments are used for charity and to support our community, empowering our mission to spread God's love through prayer and compassionate service. Below are the payment options for your donations.</p>
+        
+        <h3>Bank Account Payment</h3>
+        <img src="account.jpg" alt="Bank Account Logo">
+        <p>Please contact us directly for bank account details to make your donation.</p>
+        
+        <hr class="section-divider">
+        
+        <h3>Mobile Account Payment</h3>
+        <h4>Name: God's Prayer Squad</h4>
+        <img src="https://www.google.com/search?q=image+of+phone+with+tanzanian+money+above+the+screen&sca_esv=d262380f444288af&rlz=1C1CHBF_enTZ1110TZ1111&sxsrf=AE3TifMW0ntr3YRMG7Ry7D-cBd8p2OzeUg" alt="Mobile Payment Logo">
+        <p>Voda Lipa Namba: xxxxxxx</p>
+        
+    </div>
+
+    <footer>
+        &copy; 2026 GPS. All rights are reserved<br>
+        <p>Designed by Alhan<br>
+      
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#3498db', '#e74c3c', '#ffffff'] },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: '#3498db', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+
+            // Sidebar toggle functionality
+            const menuBtn = document.querySelector('.menu-btn');
+            const sidebar = document.getElementById('sidebar');
+
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Close sidebar when a navigation link is clicked
+            const navLinks = document.querySelectorAll('.sidebar ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

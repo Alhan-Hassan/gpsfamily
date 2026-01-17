@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>God's Prayer Squad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: #f0f4f8;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding-top: 120px;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(231, 76, 60, 0.2));
+            z-index: -1;
+        }
+
+       
+
+        nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background: #3498db;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #ffffff;
+            padding: 12px 15px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .loreza-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: #2c3e50;
+            color: #f0f4f8;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .loreza-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        .loreza-section h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 3em;
+            color: #ffb74d;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .loreza-section p {
+            font-size: 1.1em;
+            color: #b0bec5;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .journey-step {
+            background: #37474f;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            perspective: 1000px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .journey-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+            animation: glowing-border 2.5s linear infinite;
+        }
+
+        .journey-step:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.7);
+        }
+
+        .journey-step img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #3498db;
+        }
+
+        .journey-step h3 {
+            font-family: 'Open Sans', sans-serif;
+            color: #ffb74d;
+            font-size: 1.8em;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-step p {
+            color: #e0e0e0;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .image-card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(25, 118, 210, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .image-card:hover .image-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-overlay h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5em;
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .image-overlay p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        .cta-section h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5em;
+            color: #ffb74d;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: #b0bec5;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-section button {
+            background: #e74c3c;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-section button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .newsletter-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            animation: glowing-border 3s linear infinite;
+        }
+
+        .newsletter-section h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5em;
+            color: #ffb74d;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            font-size: 1.2em;
+            color: #b0bec5;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        #newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        #newsletter-email {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #37474f;
+            color: #ffffff;
+            width: 300px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            outline: none;
+        }
+
+        #newsletter-email:focus {
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        #newsletter-form button {
+            background: #3498db;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        #newsletter-form button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        #newsletter-status {
+            margin-top: 1rem;
+            font-size: 0.9em;
+            color: #b0bec5;
+        }
+
+        
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            transform: scale(0.8);
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+            box-shadow: 0 8px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .popup-close-btn {
+            background: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .popup-close-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glowing-border {
+            0% { border-color: rgba(52, 152, 219, 0.5); }
+            50% { border-color: rgba(231, 76, 60, 0.5); }
+            100% { border-color: rgba(52, 152, 219, 0.5); }
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 320px) {
+            body {
+                padding-top: 100px;
+            }
+
+            header {
+                padding: 10px 15px;
+            }
+
+            .header-logo-text {
+                font-size: 1.5em;
+            }
+
+            .gps-circle {
+                width: 40px;
+                height: 40px;
+                margin-left: 10px;
+            }
+
+            .gps-circle span {
+                font-size: 0.9em;
+            }
+
+            .gps-logo img {
+                width: 60px;
+                height: 60px;
+                margin-right: 10px;
+            }
+
+           
+
+            .loreza-section {
+                padding: 40px 15px;
+            }
+
+            .loreza-section h2 {
+                font-size: 2em;
+            }
+
+            .loreza-section p {
+                font-size: 1em;
+            }
+
+            .journey-step {
+                padding: 1.5rem;
+            }
+
+            .journey-step img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .journey-step h3 {
+                font-size: 1.5em;
+            }
+
+            .image-card {
+                width: 100%;
+                height: 150px;
+            }
+
+            .cta-section, .newsletter-section {
+                padding: 30px 15px;
+            }
+
+            .cta-section h2, .newsletter-section h2 {
+                font-size: 1.8em;
+            }
+
+            #newsletter-email {
+                width: 100%;
+            }
+
+            .media a {
+                width: 30px;
+                height: 30px;
+                margin: 0 10px;
+            }
+
+            .media a img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .media a::after {
+                font-size: 0.7em;
+                bottom: -35px;
+            }
+        }
+         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 15px 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-logo-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #3498db;
+            flex: 1;
+            text-align: center;
+            margin: 0;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header-logo-text:hover {
+            color: #2980b9;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .gps-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        .gps-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+      
+
+        
+
+        @keyframes shine {
+            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(52, 152, 219, 0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            background: #2c3e50;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #e74c3c);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            animation: gradient-flow 4s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        footer p {
+            color: #3498db;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="bg-overlay"></div>
+
+   
+  <header>
+        <i class="fas fa-bars hamburger"></i>
+        <div class="gps-circle">
+            <span>GPS</span>
+        </div>
+        <h1 class="header-logo-text">God's Prayer Squad</h1>
+       
+    </header>
+
+    <main class="loreza-section">
+        <h2>Loreza Day: The Summit of Prayer</h2>
+        <p>
+            Loreza Day is more than just a mountain climb; it's a spiritual pilgrimage. As God's Prayer Squad, we ascend the mountain to disconnect from the world and connect with our faith in a profound way. The journey is challenging, but every step brings us closer to a place of solitude and reflection, where the noise of daily life fades away.
+        </p>
+        <p>
+            Our ultimate goal is to reach the summit by sunset, where we spend the night in dedicated prayer and worship. The cool mountain air, the vast expanse of the night sky, and the silence of nature create a powerful sanctuary for communion with God. This overnight prayer session is the heart of Loreza Day, renewing our spirits and strengthening our bond as a community of faith.
+        </p>
+
+        <h2>The Journey</h2>
+        <div class="journey-grid">
+            <div class="journey-step">
+                <img src="marching prayer.jpg" alt="Ascent Image">
+                <h3>The Ascent</h3>
+                <p>We begin our climb in the early afternoon, preparing for the physical and spiritual challenge ahead.</p>
+            </div>
+            <div class="journey-step">
+                <img src="marching prayer1.jpg" alt="Overnight Prayer Image">
+                <h3>Overnight Prayer</h3>
+                <p>We settle in for a night of deep, meaningful prayer, surrounded by the beauty of creation.</p>
+            </div>
+            <div class="journey-step">
+                <img src="marching prayer2.jpg" alt="Sunrise Dedication Image">
+                <h3>Sunrise Dedication</h3>
+                <p>We conclude our pilgrimage with a morning prayer, dedicating ourselves and our community.</p>
+            </div>
+        </div>
+
+        <section class="gallery-section">
+            <h2 style="margin-top: 0; color: #ffb74d;">Moments of Reflection</h2>
+            <div class="gallery-grid">
+                <div class="image-card">
+                    <img src="night prayer.jpg" alt="Mountain Climb">
+                    <div class="image-overlay">
+                        <h4>The Climb</h4>
+                        <p>The journey to the top is a test of faith and endurance.</p>
+                    </div>
+                </div>
+                <div class="image-card">
+                    <img src="night prayer.jpg" alt="Overnight Prayer">
+                    <div class="image-overlay">
+                        <h4>Overnight Prayer</h4>
+                        <p>A serene moment of communion with God under the stars.</p>
+                    </div>
+                </div>
+                <div class="image-card">
+                    <img src="white sale.jpg" alt="Sunrise View">
+                    <div class="image-overlay">
+                        <h4>Sunrise View</h4>
+                        <p>Waking up to a breathtaking sunrise, a symbol of new beginnings.</p>
+                    </div>
+                </div>
+                <div class="image-card">
+                    <img src="sale nyeusi.jpg" alt="Community Prayer">
+                    <div class="image-overlay">
+                        <h4>Community Prayer</h4>
+                        <p>United in faith, lifting our voices as one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2026 GPS.All rights are reserved<br>
+        Designed by Alhan
+    </footer>
+
+    
+
+
+    
+
+
+
+    <script type="module">
+        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+
+        const newsletterForm = document.getElementById('newsletter-form');
+        const newsletterEmail = document.getElementById('newsletter-email');
+        const newsletterStatus = document.getElementById('newsletter-status');
+        const contactBtn = document.getElementById('contact-btn');
+        const donateBtn = document.getElementById('donate-btn');
+
+        let supabase;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#3498db', '#e74c3c', '#ffb74d'] },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: '#3498db', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+
+            try {
+                if (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseAnonKey === 'YOUR_SUPABASE_ANON_KEY') {
+                    throw new Error("Supabase URL or anon key is missing or invalid. Please replace 'YOUR_SUPABASE_URL' and 'YOUR_SUPABASE_ANON_KEY' with values from Supabase Dashboard > Settings > API.");
+                }
+                if (!supabaseUrl.match(/^https:\/\/[a-z0-9-]+\.supabase\.co$/)) {
+                    throw new Error("Invalid Supabase URL format. It should be like 'https://your-project-id.supabase.co'.");
+                }
+                supabase = createClient(supabaseUrl, supabaseAnonKey);
+                const { data: authData, error: authError } = await supabase.auth.signInAnonymously();
+                if (authError) {
+                    throw new Error(`Authentication failed: ${authError.message}. Ensure anonymous sign-in is enabled in Supabase Dashboard > Authentication > Settings.`);
+                }
+                newsletterStatus.textContent = "Ready to subscribe!";
+            } catch (error) {
+                console.error("Supabase initialization failed:", error.message);
+                newsletterStatus.textContent = `Error: ${error.message}. Check your Supabase configuration.`;
+            }
+
+            function openPopup(popupId) {
+                document.getElementById(popupId).style.display = 'flex';
+            }
+
+            function closePopup(popupId) {
+                document.getElementById(popupId).style.display = 'none';
+            }
+
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openPopup('contact-popup');
+            });
+
+            donateBtn.addEventListener('click', () => {
+                openPopup('donate-popup');
+            });
+
+            document.querySelectorAll('.popup-close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const popup = e.target.closest('.popup-overlay');
+                    if (popup) {
+                        closePopup(popup.id);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.popup-overlay').forEach(overlay => {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('popup-overlay')) {
+                        closePopup(e.target.id);
+                    }
+                });
+            });
+
+            newsletterForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = newsletterEmail.value.trim();
+                if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+                    newsletterStatus.textContent = "Please enter a valid email address.";
+                    return;
+                }
+                try {
+                    const { error } = await supabase.from('newsletter_subscribers').insert({
+                        email,
+                        timestamp: new Date()
+                    });
+                    if (error) {
+                        throw new Error(`Failed to subscribe: ${error.message}. Ensure the 'newsletter_subscribers' table exists and RLS allows inserts.`);
+                    }
+                    newsletterStatus.textContent = "Thank you for subscribing!";
+                    newsletterEmail.value = '';
+                } catch (error) {
+                    console.error("Error subscribing:", error.message);
+                    newsletterStatus.textContent = `Error: ${error.message}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
